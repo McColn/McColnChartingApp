@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>mcceco.com</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'app/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}">
+</head>
+<style type="text/css">
+	nav {
+		display: flex;
+		justify-content: space-between;
+	}
+	nav .kichwa {
+		font-weight: bolder;
+		color: black;
+	}
+	ul {
+		float: right;
+		display: flex;
+		gap: 10px;
+		padding-right: 5%;
+		cursor: pointer;
+	}
+	ul li {
+		list-style: none;
+		cursor: pointer;
+		font-weight: bolder;
+		color: grey;
+	}
+	ul li a {
+		text-decoration: none;
+		list-style: none;
+		cursor: pointer;
+		font-weight: bolder;
+		color: grey;
+	}
+	ul li a:hover {
+		text-decoration: none;
+		color: black;
+		cursor: pointer;
+	}
+</style>
+<body>
+	<div class="container">
+		<hr>
+		<nav>
+		<div class="kichwa">
+			<span>McCECo</span>
+		</div>
+		
+		<ul>
+			<li><a href="{% url 'home' %}">Welcome-{{user.username}}</a></li>
+			
+			{% if user.is_superuser%}
+			<li><a href="/admin">Admin</a></li>
+			{% endif %}
+			{% if user.is_authenticated %}
+			<li><a href="{% url 'inbox' %}">Inbox</a></li>
+			<li><a href="{% url 'signout' %}">Signout</a></li>
+			{% else %}
+			<li><a href="{% url 'signup' %}">Signin/up</a></li>
+			{% endif %}
+		</ul>
+		</nav>
+	
+
+	{% block content %}
+
+	{% endblock %}
+
+	</div>
+
+</body>
+</html>

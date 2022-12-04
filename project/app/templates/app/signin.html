@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content%}
+
+<div class="jaza">
+<form method="POST">
+	<h2>Signin Form</h2>
+	{% csrf_token %}
+	<label for="username">Username:</label>
+     <input type="text" class="form-control" name="username"><br><br>
+      <label for="password">password:</label>
+      <input type="password" class="form-control" name="password1"><br><br>
+<p>New user,<a href="{% url 'signup' %}"> please register</a></p>
+	<button class="btn btn-secondary">Submit</button>
+</form>
+</div>
+{% endblock %}
